@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff1744 0%, #ff69b4 50%, #ff1744 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(255, 23, 68, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .question {
+            font-size: 32px;
+            color: #ff1744;
+            margin-bottom: 40px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: auto;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 120px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff69b4, #ff1744);
+            color: white;
+            position: relative;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.4);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #ff1744, #ff69b4);
+            color: white;
+        }
+
+        .btn-no:hover {
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.4);
+        }
+
+        .btn-no.active {
+            position: fixed;
+            transition: all 0.4s ease;
+        }
+
+        .success-message {
+            display: none;
+            font-size: 24px;
+            color: #ff1744;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .invitation {
+            display: none;
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.1), rgba(255, 105, 180, 0.1));
+            border-left: 5px solid #ff1744;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .invitation h2 {
+            color: #ff1744;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .invitation p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .love-message {
+            color: #ff1744;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hearts {
+            font-size: 32px;
+            margin: 20px 0;
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .heart {
+            display: inline-block;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-message">✓ YES!</div>
+        
+        <div class="question" id="question">Do you want to be my valentine, creato? 💕</div>
+
+        <div class="button-container" id="buttonContainer">
+            <button class="btn btn-yes" id="yesBtn">Yes 💕</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+        </div>
+
+        <div class="invitation" id="invitation">
+            <div class="hearts">
+                <span class="heart">💕</span>
+                <span class="heart">💕</span>
+                <span class="heart">💕</span>
+            </div>
+            <h2>I would love that! 🎉</h2>
+            <p>You are invited to a special dinner on</p>
+            <p style="font-size: 22px; color: #ff1744; font-weight: bold;">February 15, 2026</p>
+            <div class="love-message">
+                I love you very very much! 💕✨
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const question = document.getElementById('question');
+        const invitation = document.getElementById('invitation');
+        const successMessage = document.querySelector('.success-message');
+
+        yesBtn.addEventListener('click', function() {
+            buttonContainer.style.display = 'none';
+            question.style.display = 'none';
+            successMessage.style.display = 'block';
+            invitation.style.display = 'block';
+        });
+
+        noBtn.addEventListener('click', function() {
+            // Add active class to enable fixed positioning
+            noBtn.classList.add('active');
+            
+            // Generate random position within viewport bounds
+            const maxX = window.innerWidth - 120;
+            const maxY = window.innerHeight - 60;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        });
+
+        // Initial position for No button
+        // Buttons start side by side symmetrically
+    </script>
+</body>
+</html>
